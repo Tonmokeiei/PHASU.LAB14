@@ -17,3 +17,26 @@ int main(){
     cout << "\nMin = " << B[5];
     return 0;
 }
+void stat(const double A[], int N, double B[]) {
+    double sum = 0, sumSq = 0, product = 1, harmonicSum = 0;
+    double max = A[0], min = A[0];
+    for (int i = 0; i < N; i++) {
+        sum += A[i];
+        sumSq += pow(A[i], 2);
+        product *= A[i];
+        harmonicSum += 1/A[i];
+        if (A[i] > max) max = A[i];
+        if (A[i] < min) min = A[i];
+    }
+    double mean = sum/N;
+    double variance = (sumSq/N) - pow(mean, 2);
+    double stdDev = sqrt(variance);
+    double geoMean = pow(product, 1.0/N);
+    double harmMean = N / harmonicSum;
+    B[0] = mean;
+    B[1] = stdDev;
+    B[2] = geoMean;
+    B[3] = harmMean;
+    B[4] = max;
+    B[5] = min;
+}
